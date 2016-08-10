@@ -16,9 +16,28 @@
 # Body
 
 
+def has_no_e(word):
+    if word.find('e') == -1:
+        return True
+    else:
+        return False
+
+
+def print_no_e(filename):
+    with open(filename, "r") as f:
+        words = f.readlines()
+    total_words = len(words)
+    words_without_e = 0
+    for word in words:
+        if has_no_e(word.strip()):
+            print(word.strip())
+            words_without_e += 1
+    print("{:.2%} of all the words in the file have no e".format(words_without_e/total_words))
+
+
 ##############################################################################
 def main():
-    pass  # Call your function(s) here.
+    print_no_e("words.txt") 
 
 if __name__ == '__main__':
     main()

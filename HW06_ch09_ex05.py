@@ -18,9 +18,27 @@
 # Body
 
 
+def uses_all(word, required_letters):
+    word = set(word.lower())
+    for letter in required_letters.lower():
+        if letter not in word:
+            return False
+    return True
+
+
+def count_uses_all(required_letters):
+    count = 0
+    with open("words.txt", "r") as f:
+        file_contents = f.readlines()
+    for word in file_contents:
+        if uses_all(word.strip(), required_letters):
+            count += 1
+    print("Number of words using all of these letters ({}) is {}.".format(required_letters, count))
+
 ##############################################################################
 def main():
-    pass  # Call your function(s) here.
+    count_uses_all("aeiou")
+    count_uses_all("aeiouy")
 
 if __name__ == '__main__':
     main()
